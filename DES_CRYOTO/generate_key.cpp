@@ -45,7 +45,7 @@ void PC2_function(unsigned unsigned int head, unsigned int tail, unsigned char s
 	}
 }
 
-void generate_key(unsigned char key[], unsigned char round_keys[][6]) {
+void generate_key(unsigned char key[], unsigned char round_keys[][6], short MODE_CRYPTO) {
 	unsigned char PC1[7];
 	memset(PC1, 0, sizeof(PC1));
 	PC1_function(key, PC1);
@@ -66,6 +66,9 @@ void generate_key(unsigned char key[], unsigned char round_keys[][6]) {
 			head = ((head >> 27) & 1) | (head << 1);
 			tail = ((tail >> 27) & 1) | (tail << 1);
 		}
-		PC2_function(head, tail, round_keys[i]);
+		if (MODE_CRYPTO == 0) {
+			PC2_function(head, tail, round_keys[i]);
+		}
+		else PC2_function(head, tail, round_keys[15 - i]);
 	}
 }

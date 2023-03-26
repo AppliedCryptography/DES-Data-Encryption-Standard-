@@ -35,12 +35,12 @@ void FP(unsigned char block_plaintext[]) {
     }
 }
 
-void des(unsigned char block_plaintext[], unsigned char key[], unsigned char block_ciphertext[]) {
+void des(unsigned char block_plaintext[], unsigned char key[], unsigned char block_ciphertext[], short MODE_CRYPTO) {
     IP(block_plaintext);
 
     unsigned char round_keys[16][6];
     memset(round_keys, 0, sizeof(round_keys));
-    generate_key(key, round_keys);
+    generate_key(key, round_keys, MODE_CRYPTO);
 
     unsigned char L[4], R[4];
     memcpy(L, block_plaintext, 4);

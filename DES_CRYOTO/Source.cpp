@@ -24,5 +24,16 @@ unsigned int main() {
         }
     }
     cout << endl;
+    
+    unsigned char d[8];
+    memset(d, 0, 8);
+    des(c, key, d, 1);
+    cout << "Descipt_text : ";
+    for (int o = 0; o < 8; o++) {
+        for (int w = 7; w >= 0; w--) {
+            cout << ((d[o] >> w) & 1);
+        }
+    }
+    cout << endl;
     return 0;
 }
